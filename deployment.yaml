@@ -28,6 +28,6 @@ spec:
       containers:
         - name: iot-app
           # CHANGER ICI v1 -> v2 pour declencher le sync ArgoCD
-          image: thomasrbm/iot_app:v1
+          image: thomasrbm/throbert_iot_app:v1
           ports:
             - containerPort: 80
