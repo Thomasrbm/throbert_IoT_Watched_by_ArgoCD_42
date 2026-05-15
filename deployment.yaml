@@ -1,33 +1,21 @@
-# kubectl apply cree un ReplicaSet qui cree des pods  (fait par argoCD si diff)
-#  requête HTTP  au serveur web (nginx du namespace dev)
-
-# argocd va clone les repo avec requete http
-# envoit les yaml a k8s
-
-
-# dit a quel url precise de l api envoyer le fichier
 apiVersion: apps/v1
-kind: Deployment # objet type deployement = maintinet N copie du pods + fait majs
+kind: Deployment
 metadata:
   name: iot-app
   labels:
-    app: iot-app # id le label de lapp
+    app: iot-app
 spec:
-  replicas: 1 # 1 copie needed
-  # selector dit au Deployment quels Pods il "possede"
-  # doit matcher les labels du template ci-dessous
+  replicas: 1
   selector:
     matchLabels:
       app: iot-app
-  # template = recette du Pod que K8s va creer
   template:
     metadata:
       labels:
-        app: iot-app # doit matcher le selector au-dessus
+        app: iot-app
     spec:
       containers:
         - name: iot-app
-          # CHANGER ICI v1 -> v2 pour declencher le sync ArgoCD
           image: thomasrbm/throbert_iot_app:v1
           ports:
             - containerPort: 80
