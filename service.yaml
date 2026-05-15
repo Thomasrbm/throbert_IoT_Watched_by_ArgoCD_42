@@ -1,11 +1,5 @@
- 
-# kube-apiserver          lit le yaml et mes objet/regles dans la base etcd
-# endpoints controller    lit le Service depuis etcd, ecrit les ip pour les labels correspondant
-# kube-proxy              lit le Service + Endpoints  = regle ip pour le node (docker)
-# CoreDNS                 ecrit  une entrée DNS (iot-app → 10.96.0.42) 
-
 apiVersion: v1
-kind: Service # ne fait aucun code, que des regles reseau
+kind: Service
 metadata:
   name: iot-app
 spec:
@@ -13,8 +7,6 @@ spec:
     app: iot-app
   ports:
     - protocol: TCP
-      port: 80         # port du Service (cluster interne)
-      targetPort: 80   # port du container (nginx)
-  # ClusterIP = accessible seulement dans le cluster
+      port: 80
+      targetPort: 80
   type: ClusterIP
-  # "kubectl port-forward svc/iot-app 8888:80" depuis l hote
