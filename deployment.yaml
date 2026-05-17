@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: iot-app
-          image: thomasrbm/throbert_iot_app:v1
+          image: thomasrbm/throbert_iot_app:v2
           ports:
             - containerPort: 80
